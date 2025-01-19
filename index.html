@@ -24,11 +24,14 @@
             <h2 id="marriage-question">💍</h2>
             <img src="./images/marryme.png" alt="Will You Marry Me?" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
             <button id="yes-button">Yes</button>
-            <button id="no-button">No</button>
+            <button id="yes-button2">Absolutely Yes!</button>
+            <button id="yes-button3">Hell Yes!!</button>
+            <button id="yes-button4">You know it!!!</button>
         </div>
         <div id="final-message" style="display: none;">
             <h2>💍 Marry Me 💍</h2>
             <p id="letter">
+                <img src="./images/1.jpeg" alt="1pic" style="width: 80%; max-width: 500px; display: block; margin: 0 auto;">
                 사랑하는 문성혁 씨에게<br><br>
 
                 우리가 처음 했던 것들을 다 기억 못해도 상관 없어.<br>
@@ -48,7 +51,7 @@
 
     <script>
         const questions = [
-            { question: "친구랑 만나기로 했는데 갑자기 약속이 취소된다면?", options: ["무조건 혼자할 수 있는 취미생활이 최고지", "동호회 가입해서 많은 사람들이랑 같이 해야 재밌어"], answer: "" },
+            { question: "친구랑 만나기로 했는데 갑자기 약속이 취소된다면?", options: ["와~ 드디어 나만의 시간이 생겼다! 행복해", "누구 다른 사람 연락해볼까~"], answer: "" },
             { question: "슬픔을 나누면?", options: ["반이 된다. 슬픔은 공유해야지!", "둘이 된다. 왜냐면 슬픈 사람이 두 명이 되기 때문이지"], answer: "" },
             { question: "요리할 때 나의 스타일은?", options: ["레시피랑 계량대로 잘 따라 만드는 것이 가장 중요", "음식은 손맛!~ 감으로 하는겨~"], answer: "" },
             { question: "비행기 타기 전에 무슨 생각이 들까?", options: ["비행기가 추락하면 어떡하지.. 비상구 자리로 정할까", "기내식 뭐나오려나. 영화는 뭐 볼까"], answer: "" },
@@ -117,14 +120,22 @@
         }
 
         function startCountdown() {
-            let countdownValue = 5;
+            let countdownValue = 9;
             proposalSection.style.display = "none"; // Hide proposal section during countdown
 
             countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
 
             const countdownInterval = setInterval(() => {
                 countdownValue--;
-                countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
+                if (countdownValue >= 7 & countdownValue <= 9) {
+                    countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
+                }
+                if (countdownValue >= 4 & countdownValue <= 6) {
+                    countdownElement.textContent = `    단단히 ${countdownValue}...`;
+                }
+                if (countdownValue >= 1 & countdownValue <= 3) {
+                    countdownElement.textContent = `      해~ ${countdownValue}...`;
+                }
 
                 if (countdownValue <= 0) {
                     clearInterval(countdownInterval);
@@ -136,17 +147,32 @@
 
         // 결혼 제안 버튼 클릭 시 final-message 표시
         const yesButton = document.getElementById("yes-button");
-        const noButton = document.getElementById("no-button");
+        const yesButton2 = document.getElementById("yes-button2");
+        const yesButton3 = document.getElementById("yes-button3");
+        const yesButton4 = document.getElementById("yes-button4");
+        //const noButton = document.getElementById("no-button");
 
         // 'Yes' 버튼 클릭 시
         yesButton.onclick = () => {
             showFinalMessage();
         };
 
-        // 'No' 버튼 클릭 시
-        noButton.onclick = () => {
+        yesButton2.onclick = () => {
             showFinalMessage();
         };
+
+        yesButton3.onclick = () => {
+            showFinalMessage();
+        };
+
+        yesButton4.onclick = () => {
+            showFinalMessage();
+        };
+
+        // 'No' 버튼 클릭 시
+        //noButton.onclick = () => {
+        //    showFinalMessage();
+        //};
 
         function showFinalMessage() {
             // 결혼 제안 섹션 숨기고
