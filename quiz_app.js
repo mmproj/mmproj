@@ -1,5 +1,5 @@
 const questions = [
-    { question: "친구랑 만나기로 했는데 갑자기 약속이 취소된다면?", options: ["무조건 혼자할 수 있는 취미생활이 최고지", "동호회 가입해서 많은 사람들이랑 같이 해야 재밌어"], answer: "" },
+    { question: "친구랑 만나기로 했는데 갑자기 약속이 취소된다면?", options: ["와~ 드디어 나만의 시간이 생겼다! 행복해", "누구 다른 사람 연락해볼까~"], answer: "" },
     { question: "슬픔을 나누면?", options: ["반이 된다. 슬픔은 공유해야지!", "둘이 된다. 왜냐면 슬픈 사람이 두 명이 되기 때문이지"], answer: "" },
     { question: "요리할 때 나의 스타일은?", options: ["레시피랑 계량대로 잘 따라 만드는 것이 가장 중요", "음식은 손맛!~ 감으로 하는겨~"], answer: "" },
     { question: "비행기 타기 전에 무슨 생각이 들까?", options: ["비행기가 추락하면 어떡하지.. 비상구 자리로 정할까", "기내식 뭐나오려나. 영화는 뭐 볼까"], answer: "" },
@@ -56,15 +56,22 @@ function handleAnswer(selectedOption) {
 }
 
 function startCountdown() {
-    let countdownValue = 5;
+    let countdownValue = 15;
     proposalSection.style.display = "none"; // Hide proposal section during countdown
 
     countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
 
     const countdownInterval = setInterval(() => {
         countdownValue--;
-        countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
-
+        if (countdownValue <= 15) {
+            countdownElement.textContent = `마음의 준비 ${countdownValue}...`;
+        }
+        if (countdownValue <= 10) {
+            countdownElement.textContent = `단단히 ${countdownValue}...`;
+        }
+        if (countdownValue <= 5) {
+            countdownElement.textContent = `해~ ${countdownValue}...`;
+        }
         if (countdownValue <= 0) {
             clearInterval(countdownInterval);
             proposalSection.style.display = "block"; // Show proposal section after countdown
