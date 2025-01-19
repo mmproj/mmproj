@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 성격 유형 검사 ? </title>
+    <title>성격 유형 검사</title>
+    <!-- 구글 폰트 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="quiz_app.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet"> <!-- 예쁜 폰트 추가 -->
 </head>
 <body>
     <div class="container">
         <div id="quiz-section">
-            <h1>😆재미로 해보는 성격유형 검사😆</h1>
-            <p id="progress" style="color: #4CAF50; font-weight: bold;">Question 1 of 12</p>
+            <h1>😆 재미로 해보는 성격유형 검사 😆</h1>
+            <p id="progress" style="color: #f10f88; font-weight: bold;">Question 1 of 12</p>
+            <div id="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
             <p id="question">Question will appear here.</p>
             <div id="options"></div>
         </div>
         <div id="proposal-section" style="display: none;">
-            <h2 id="marriage-question">💍Will You Marry Me?💍</h2> <!-- 웨딩 이모지 추가 및 스타일 변경 -->
+            <h2 id="marriage-question">💍 Will You Marry Me? 💍</h2>
+            <img src="https://files.oaiusercontent.com/file-BJmnrWcH9dqKKgDUUJLnnu?se=2025-01-19T11%3A11%3A42Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D29940b40-e017-4c48-99c0-407c9d99a6fc.webp&sig=3JA3vnD3adlc50IDAF5EGtGzA041DTUom%2BSaIHhfK68%3D" alt="Will You Marry Me?" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
             <button id="yes-button">Yes</button>
             <button id="no-button">No</button>
         </div>
@@ -65,12 +70,21 @@
         const optionsElement = document.getElementById("options");
         const progressElement = document.getElementById("progress");
         const countdownElement = document.getElementById("countdown");
-        const marriageQuestion = document.getElementById("marriage-question");
-        const yesButton = document.getElementById("yes-button");
-        const noButton = document.getElementById("no-button");
+        const progressBar = document.getElementById("progress-bar");
 
         function updateProgress() {
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
             progressElement.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            progressBar.style.width = `${progressPercentage}%`;
+
+            // Change color as progress increases
+            if (progressPercentage <= 33) {
+                progressBar.style.backgroundColor = "#f17fbc"; // Pink for 0-33%
+            } else if (progressPercentage <= 66) {
+                progressBar.style.backgroundColor = "#f1a23b"; // Orange for 34-66%
+            } else {
+                progressBar.style.backgroundColor = "#4caf50"; // Green for 67-100%
+            }
         }
 
         function loadQuestion() {
@@ -119,15 +133,6 @@
                 }
             }, 1000);
         }
-
-        yesButton.onclick = () => {
-            proposalSection.style.display = "none";
-            finalMessage.style.display = "block";
-        };
-
-        noButton.onclick = () => {
-            alert("그런 선택지는 없는데..!");
-        };
 
         loadQuestion();
     </script>
